@@ -1,4 +1,9 @@
-body, div, p {
+@font-face {
+    font-family: Righteous;
+    src: url('../fonts/Righteous-Regular.ttf');
+}
+
+body, div, p, input, main{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,8 +13,9 @@ body, div, p {
 body {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
-    min-width: 550px;
+    min-width: 320px;
     height: 100%;
     min-height: 100vh;
     background: linear-gradient(0deg, #291f3a, #000000);
@@ -35,11 +41,11 @@ body {
 }
 
 .neon_frame {
-    width: 450px;
+    min-width: 320px;
     height: 170px;
     border: 3px solid #ffffff;
     padding: 20px 20px;
-    font-size: 44px;
+    font-size: 38px;
     font-family: Righteous;
     color: #333333;
     font-variant: petite-caps;
@@ -50,6 +56,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    filter: saturate(5);
     animation: neon_frame 4s 1 cubic-bezier(0, 0.5, 0.96, 1), border_anim_cicle 5s infinite linear;
 
 }
@@ -77,12 +84,11 @@ body {
 }
 
 @keyframes neon_frame_after {
-    0% {
-        opacity: 0;
+    from {
         margin-top: 400px;
         transform: perspective(100px) rotateX(90deg) scale(1.1);
-    }
-
+        background: #333;
+    } 
 }
 
 @keyframes neon_frame_after_cicle {
@@ -99,10 +105,42 @@ body {
     width: 100%;
     height: 60%;
     position: absolute;
-    background: #8ae2ff;
+    background: #a7ccd9;
     left: 0;
     top: 200px;
     transform: perspective(100px) rotateX(30deg) scale(1.1);
-    filter: blur(35px);
+    filter: blur(30px);
     animation: neon_frame_after 4s 1 cubic-bezier(0, 0.5, 0.96, 1), neon_frame_after_cicle infinite 3s linear;
+}
+
+
+::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: #fff;
+    border: 1px solid gray;
+    width: 20px;
+    height: 30px;
+    border-radius: 4px;
+    box-shadow: 0 0 black;
+    cursor: pointer;
+}
+
+@keyframes range_control {
+    0% {opacity: 0; }
+    90% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+input[type='range'] {
+    -webkit-appearance: none;
+    background: linear-gradient(90deg, #00ecfd, #f84df8, #f24c62, #fc8301,  #02e003, #00ecfd);
+    border: 2px solid #313131;
+    box-shadow: inset 0 0 3px 2px #3d3d3d;
+    height: 20px;
+    max-width: 300px;
+    width: 100%;
+    border-radius: 10px;
+    margin-top: -50px;
+    margin-bottom: 40px;
+    animation: range_control 4.5s 1 linear;
 }
