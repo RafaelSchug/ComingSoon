@@ -3,7 +3,12 @@
     src: url('../fonts/Righteous-Regular.ttf');
 }
 
-body, div, p, input, main{
+:root {
+    --sync-time: 4s;
+    --input-time: 4.5s;
+}
+
+body, div, p, input{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,7 +17,6 @@ body, div, p, input, main{
 
 body {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
     min-width: 320px;
@@ -20,6 +24,7 @@ body {
     min-height: 100vh;
     background: linear-gradient(0deg, #291f3a, #000000);
     overflow: hidden;
+    padding-top: calc(50vh - 100px);
 }
 
 
@@ -57,7 +62,7 @@ body {
     flex-direction: column;
     justify-content: center;
     filter: saturate(5);
-    animation: neon_frame 4s 1 cubic-bezier(0, 0.5, 0.96, 1), border_anim_cicle 5s infinite linear;
+    animation: neon_frame var(--sync-time) 1 cubic-bezier(0, 0.5, 0.96, 1), border_anim_cicle 5s infinite linear;
 
 }
 
@@ -85,8 +90,9 @@ body {
 
 @keyframes neon_frame_after {
     from {
-        margin-top: 400px;
-        transform: perspective(100px) rotateX(90deg) scale(1.1);
+        margin-top: 200px;
+        top: 440px;
+        transform: perspective(79px) rotateX(14deg) scale(0.8);
         background: #333;
     } 
 }
@@ -96,7 +102,7 @@ body {
         opacity: 0.5;
     }
     10%, 25%, 32%, 45%, 60%, 65%, 87%, 92% {
-        opacity: 1;
+        opacity: 0.8;
     }
 }
 
@@ -110,7 +116,7 @@ body {
     top: 200px;
     transform: perspective(100px) rotateX(30deg) scale(1.1);
     filter: blur(30px);
-    animation: neon_frame_after 4s 1 cubic-bezier(0, 0.5, 0.96, 1), neon_frame_after_cicle infinite 3s linear;
+    animation: neon_frame_after var(--sync-time) 1 cubic-bezier(0, 0.5, 0.96, 1), neon_frame_after_cicle infinite 3s linear;
 }
 
 
@@ -142,5 +148,5 @@ input[type='range'] {
     border-radius: 10px;
     margin-top: -50px;
     margin-bottom: 40px;
-    animation: range_control 4.5s 1 linear;
+    animation: range_control var(--input-time) 1 linear;
 }
